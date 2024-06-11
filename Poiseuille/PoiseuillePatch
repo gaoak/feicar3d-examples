@@ -1,5 +1,5 @@
 diff --git a/postprocess/CombineOutput.cpp b/postprocess/CombineOutput.cpp
-index 6bb1895..90e28c1 100644
+index 6bb1895..a54e07b 100644
 --- a/postprocess/CombineOutput.cpp
 +++ b/postprocess/CombineOutput.cpp
 @@ -22,7 +22,7 @@ void SubsExactSolution(const std::vector<OUTREAL> &x,
@@ -12,51 +12,26 @@ index 6bb1895..90e28c1 100644
      w[i] -= 0.;
      p[i] -= 0.;
 diff --git a/src/CORE_SET_SOLVERS.F90 b/src/CORE_SET_SOLVERS.F90
-index 2122a0a..4578ea7 100644
+index f6f848e..5fb829b 100644
 --- a/src/CORE_SET_SOLVERS.F90
 +++ b/src/CORE_SET_SOLVERS.F90
-@@ -45,11 +45,10 @@
-    ! CALL rhs_diff(wOld,nlw)    
- 
-     CALL rhs_diff(u,nlu)
--    ! add a body force to accelerate the simulation evolution
--    if (ntime .le. 400)  call body_force(nlu)
--
-     CALL rhs_diff(v,nlv)
-     CALL rhs_diff(w,nlw)
-+    ! add a body force
-+    call body_force(nlu,nlv,nlw)
- 
-     !PRINT*, 'Min-Max of NLU =',minval(nlu(1:nx-1,1:ny-1,1:nz-1)),maxval(nlu(1:nx-1,1:ny-1,1:nz-1))
-     !PRINT*, 'Min-Max of NLV =',minval(nlv(1:nx-1,1:ny-1,1:nz-1)),maxval(nlv(1:nx-1,1:ny-1,1:nz-1))
-@@ -595,7 +594,7 @@
- !------------------------------------------------------------------------------
- 
- 
--   SUBROUTINE body_force(nlvel) 
-+   SUBROUTINE body_force(nlu,nlv,nlw)
-     
-       USE global_parameters
-       USE flow_parameters
-@@ -609,9 +608,7 @@
- 
- !... parameters
-    
--      REAL(KIND=CGREAL), DIMENSION(0:nx+1,0:ny+1,zb1:zb2), INTENT(INOUT)   :: nlvel     
--      real(KIND=CGREAL) :: tes1      
--!REAL(KIND=CGREAL), DIMENSION(0:nx+1,0:ny+1,zb1:zb2), INTENT(IN)    :: vel
-+      REAL(KIND=CGREAL), DIMENSION(0:nx+1,0:ny+1,zb1:zb2), INTENT(INOUT)   :: nlu,nlv,nlw
- 
+@@ -613,12 +613,12 @@
  !... loop  variables
        INTEGER              :: i,j,k
-@@ -619,9 +616,7 @@
-       DO k = zc_start,zc_end  !1,nz-1
-       DO j = 1,ny-1
-       DO i = 1,nx-1
--                  
--        nlvel(i,j,k ) = nlvel(i,j,k)  + ux1*freq_ux1*exp(-ntime*freq_ux1)
--
+      
+-      ! DO k = zc_start,zc_end  !1,nz-1
+-      ! DO j = 1,ny-1
+-      ! DO i = 1,nx-1
+-      !   nlu(i,j,k ) = nlu(i,j,k)  + dt / re
+-      ! ENDDO ! i
+-      ! ENDDO ! j
+-      ! ENDDO ! k
++      DO k = zc_start,zc_end  !1,nz-1
++      DO j = 1,ny-1
++      DO i = 1,nx-1
 +        nlu(i,j,k ) = nlu(i,j,k)  + dt / re
-       ENDDO ! i
-       ENDDO ! j
-       ENDDO ! k 
++      ENDDO ! i
++      ENDDO ! j
++      ENDDO ! k
+ 
+     END SUBROUTINE body_force

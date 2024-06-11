@@ -1,13 +1,13 @@
 nread 
 0
 ndim  flow_type
-3      1
+3      3
 nx      ny     nz    z_slab
 21    21     3    2
 xgrid_unif  xOrigin xout
-2         0 1.
+2         0 6.28318530717958623
 ygrid_unif  yOrigin yout
-2         0 1.
+2         0 6.28318530717958623
 zgrid_unif  zOrigin zout
 2         0 0.1
 uinit       vinit      winit     Perturbation
@@ -15,16 +15,16 @@ uinit       vinit      winit     Perturbation
 ===================================== Boundary conditions =====================================
 -----left boundary ---------
 bcx1        ux1        vx1        wx1      freq_ux1     freq_vx1     freq_wx1    
-5           0.0         0.0        0.0        0.0          0.0          0.0
+4           0.0         0.0        0.0        0.0          0.0          0.0
 -----right boundary ---------
 bcx2        ux2        vx2        wx2      freq_ux2     freq_vx2     freq_wx2
-5           0.0        0.0        0.0        0.0          0.0          0.0
+4           0.0        0.0        0.0        0.0          0.0          0.0
 -----bottom boundary ---------
 bcy1        uy1,       vy1,       wy1      freq_uy1     freq_vy1     freq_wy1
-5           0.0        0.0        0.0        0.0          0.0          0.0
+4           0.0        0.0        0.0        0.0          0.0          0.0
 -----top boundary ---------
 bcy2        uy2,       vy2,       wy2      freq_uy2     freq_vy2     freq_wy2
-5           0.0        0.0        0.0        0.0          0.0          0.0
+4           0.0        0.0        0.0        0.0          0.0          0.0
 -----back boundary ---------
 bcz1,       uz1,       vz1,       wz1      freq_uz1     freq_vz1     freq_wz1
 2           0.0        0.0        0.0        0.0          0.0          0.0
@@ -42,7 +42,7 @@ no_tsteps,  nmonitor, ndump     nrestart    nstat   nprobe
 Imonitor_drag, Imonitor_probe, format_dump, Imonitor_SolutionError
 1              0              5                1
 re,         dt
-40       0.2
+20       0.00001
 frac_step (0: Non-Van-Kan, 1: Van-Kan) advec_scheme (1: AB2, 2: CN1, 3: cN2)
 0                                        3 
 ================================= Hybridization ===============================================
