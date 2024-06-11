@@ -46,6 +46,9 @@ $!ReadDataSet  '|LFDSFN1|'
   VarNameList = '|LFDSVL1|'
 $!RemoveVar |LFDSVL1|
 $!RemoveVar |LFDSFN1|
+$!AlterData 
+  IgnoreDivideByZero = Yes
+  Equation = '{exact}={y}*(2.-{y})*0.5'
 $!FrameLayout 
   ShowBorder = No
   ShowHeader = No
@@ -74,10 +77,15 @@ $!GlobalLinePlot
   Legend
     {
     Show = Yes
+    Box
+      {
+      BoxType = None
+      Margin = 0
+      }
     XYPos
       {
-      X = 56.638
-      Y = 80.485
+      X = 91.211
+      Y = 99.242
       }
     }
 $!LineMap  [1]
@@ -111,7 +119,7 @@ $!LineMap  [2]
   Assign
     {
     Zone = 1
-    XAxisVar = 2
+    XAxisVar = 8
     YAxisVar = 2
     }
   Lines
@@ -148,8 +156,8 @@ $!XYLineAxis
   XDetail 1
     {
     RangeMin = 0
-    RangeMax = 1
-    GRSpacing = 0.2
+    RangeMax = 0.55000000000000004441
+    GRSpacing = 0.1
     Title
       {
       TitleMode = UseText

@@ -24,7 +24,7 @@ bcy1        uy1,       vy1,       wy1      freq_uy1     freq_vy1     freq_wy1
 1           0.0        0.0        0.0        0.0          0.0          0.0
 -----top boundary ---------
 bcy2        uy2,       vy2,       wy2      freq_uy2     freq_vy2     freq_wy2
-1           0.0        0.0        0.0        0.0          0.0          0.0
+2           0.0        0.0        0.0        0.0          0.0          0.0
 -----back boundary ---------
 bcz1,       uz1,       vz1,       wz1      freq_uz1     freq_vz1     freq_wz1
 2           0.0        0.0        0.0        0.0          0.0          0.0

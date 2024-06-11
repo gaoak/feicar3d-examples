@@ -7,5 +7,5 @@
 !input.dat
 !xgrid.dat
 !z_slices.dat
-!Flow/proc.sh
-!Flow/solution.lay
+!proc.sh
+!solution.lay
