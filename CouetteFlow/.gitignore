@@ -1,0 +1,11 @@
+*
+!.gitignore
+!canonical_body_in.dat
+!run.sh
+!ygrid.dat
+!zgrid.dat
+!input.dat
+!xgrid.dat
+!z_slices.dat
+!Flow/proc.sh
+!Flow/solution.lay
