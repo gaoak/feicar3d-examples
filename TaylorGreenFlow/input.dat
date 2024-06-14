@@ -1,30 +1,30 @@
 nread 
 0
 ndim  flow_type
-3      3
+3      1
 nx      ny     nz    z_slab
-21    21     3    2
+256     256     3    1
 xgrid_unif  xOrigin xout
-2         0 6.28318530717958623
+1         0   6.28 
 ygrid_unif  yOrigin yout
-2         0 6.28318530717958623
+1         0   6.28
 zgrid_unif  zOrigin zout
-2         0 0.1
+1         -0.05 0.05 
 uinit       vinit      winit     Perturbation
 0.0         0.0        0.0         0.0
 ===================================== Boundary conditions =====================================
 -----left boundary ---------
 bcx1        ux1        vx1        wx1      freq_ux1     freq_vx1     freq_wx1    
-4           0.0         0.0        0.0        0.0          0.0          0.0
+5          0.0         0.0        0.0        0.01          0.0          0.0
 -----right boundary ---------
 bcx2        ux2        vx2        wx2      freq_ux2     freq_vx2     freq_wx2
-4           0.0        0.0        0.0        0.0          0.0          0.0
+5           0.0        0.0        0.0        0.0          0.0          0.0
 -----bottom boundary ---------
 bcy1        uy1,       vy1,       wy1      freq_uy1     freq_vy1     freq_wy1
-4           0.0        0.0        0.0        0.0          0.0          0.0
+5           0.0        0.0        0.0        0.0          0.0          0.0
 -----top boundary ---------
 bcy2        uy2,       vy2,       wy2      freq_uy2     freq_vy2     freq_wy2
-4           0.0        0.0        0.0        0.0          0.0          0.0
+5           0.0        0.0        0.0        0.0          0.0          0.0
 -----back boundary ---------
 bcz1,       uz1,       vz1,       wz1      freq_uz1     freq_vz1     freq_wz1
 2           0.0        0.0        0.0        0.0          0.0          0.0
@@ -38,11 +38,11 @@ pppx1  pppx2  pppy1  pppy2  pppz1  pppz2  (specify pressure at boundary)
  0.0    0.0     0.0    0.0   0.0    0.0    
 ================================= Time step control ===========================================
 no_tsteps,  nmonitor, ndump     nrestart    nstat   nprobe
-1000        1         1000       10000        0       1 
-Imonitor_drag, Imonitor_probe, format_dump, Imonitor_SolutionError
-1              0              5                1
+2000         100      100       100        0       1 
+Imonitor_drag, Imonitor_probe, format_dump
+1              1             5   
 re,         dt
-20       0.00001
+20          4e-5
 frac_step (0: Non-Van-Kan, 1: Van-Kan) advec_scheme (1: AB2, 2: CN1, 3: cN2)
 0                                        3 
 ================================= Hybridization ===============================================
@@ -52,26 +52,26 @@ Upwind_Weight  (0.0 = 100% CDS, 1.0 = 100% upwind, 0.875 = QUICK)
 internal_boundary_present   (0: No, 1: Yes)  nGhostMax  nDeadMax
 1                          300        300
 probeLengthNormalized  itermax_gc, restol_gcv, restol_gcp
-1.                    100          1.0E-5      1.0E-2
+1.1                    500          1.0E-7      1.0E-2
 mix_GC_form, probeLengthNormalizedD, membrane_tkns_factor
 0            2.0                     1.5
 ============================== Advection and diffusion solver =================================
 itermax_ad,    restol_ad,   omega-ad
-1000             1.0E-6       1.0
+500            1.0E-10       1.0
 ============================= Poisson solver ==================================================
 it_solver_type (1: Line SOR, 2: PETSC, 3: MG 4: Aztec)   Red_Black
 3                                                1
 omega_pson
 1.0
 iterMaxPoisson,    resMaxPoisson
-1                  1.0E-6    
+500              1.0E-7    
 ============================== Multi-grid Method ==============================================
 Multi-Grid cycle in x, y, z direction respectively(1: V cycle, 2: W cycle, 3: F cycle)
 1    1    1
 Iterations per loop (iterFinest, iterInter, iterCoarest) (iterInter: 0, for linear increment)
-1    300    1 
+1    1000    1 
 Want to change the total # of grid levels? (0: No, and other number: Yes)
-0 0 0 
+7 5 5 
 Want to output the convergence history? (0: No, 1: Yes)
 0
 ============================== FSI module==============================================
