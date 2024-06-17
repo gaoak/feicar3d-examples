@@ -3,13 +3,13 @@ nread
 ndim  flow_type
 3      1
 nx      ny     nz    z_slab
-3    21     3    2
+3    3     26    2
 xgrid_unif  xOrigin xout
-2         0 0.1
+2         -0.05 0.05
 ygrid_unif  yOrigin yout
-2         0 1.
+2         -0.05 0.05
 zgrid_unif  zOrigin zout
-2         0 0.1
+2         0 20
 uinit       vinit      winit     Perturbation
 0.0         0.0        0.0         0.0
 ===================================== Boundary conditions =====================================
@@ -21,16 +21,16 @@ bcx2        ux2        vx2        wx2      freq_ux2     freq_vx2     freq_wx2
 5           0.0        0.0        0.0        0.0          0.0          0.0
 -----bottom boundary ---------
 bcy1        uy1,       vy1,       wy1      freq_uy1     freq_vy1     freq_wy1
-1           0.0        0.0        0.0        0.0          0.0          0.0
+5           0.0        0.0        0.0        0.0          0.0          0.0
 -----top boundary ---------
 bcy2        uy2,       vy2,       wy2      freq_uy2     freq_vy2     freq_wy2
-1           0.0        0.0        0.0        0.0          0.0          0.0
+5           0.0        0.0        0.0        0.0          0.0          0.0
 -----back boundary ---------
 bcz1,       uz1,       vz1,       wz1      freq_uz1     freq_vz1     freq_wz1
-2           0.0        0.0        0.0        0.0          0.0          0.0
+3           1.0        0.0        0.0        0.1          0.0          0.0
 -----front boundary ---------
 bcz2,       uz2,       vz2,       wz2      freq_uz2     freq_vz2     freq_wz2
-2           0.0        0.0        0.0        0.0          0.0          0.0
+1           0.0        0.0        0.0        0.0          0.0          0.0
 -----Pressure boundary conditions-------
 bcx1  pbcx2  pbcy1  pbcy2  pbcz1  pbcz2  (1 for Dirichlet, 2 for Neumann)
   2      2      2      2      2      2
@@ -38,11 +38,11 @@ pppx1  pppx2  pppy1  pppy2  pppz1  pppz2  (specify pressure at boundary)
  0.0    0.0     0.0    0.0   0.0    0.0    
 ================================= Time step control ===========================================
 no_tsteps,  nmonitor, ndump     nrestart    nstat   nprobe
-1000        1         1000       10000        0       1 
+12000        1         50       10000        0       1 
 Imonitor_drag, Imonitor_probe, format_dump, Imonitor_SolutionError
 1              0              5                1
 re,         dt
-40       0.2
+1       0.00628319
 frac_step (0: Non-Van-Kan, 1: Van-Kan) advec_scheme (1: AB2, 2: CN1, 3: cN2)
 0                                        3 
 ================================= Hybridization ===============================================
